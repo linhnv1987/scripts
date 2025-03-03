@@ -26,7 +26,7 @@ read -p "Nhập DNS servers (nhấn Enter để dùng mặc định 8.8.8.8, 8.8
 
 # Nếu không nhập DNS, dùng mặc định
 if [[ -z "$DNS" ]]; then
-    DNS="8.8.8.8 8.8.4.4"
+    DNS="8.8.8.8,8.8.4.4"
 fi
 
 # Đặt hostname mới
@@ -38,7 +38,7 @@ echo "Cập nhật /etc/hosts..."
 sed -i "/127.0.1.1/c\127.0.1.1 $NEW_HOSTNAME" /etc/hosts
 
 # Cấu hình Netplan cho IP tĩnh
-NETPLAN_CONFIG="/etc/netplan/01-netcfg.yaml"
+NETPLAN_CONFIG="/etc/netplan/50-cloud-init.yaml"
 
 cat <<EOF > $NETPLAN_CONFIG
 network:
