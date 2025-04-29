@@ -64,6 +64,11 @@ network:
         addresses: [$DNS]
 EOF
 
+# Vô hiệu hóa cấu hình mạng từ cloud-init
+echo "Vô hiệu hóa cấu hình mạng từ cloud-init..."
+CLOUD_CFG_FILE="/etc/cloud/cloud.cfg.d/99-disable-network-config.cfg"
+echo "network: {config: disabled}" > "$CLOUD_CFG_FILE"
+
 # Áp dụng cấu hình mới
 echo "Áp dụng cấu hình mạng..."
 netplan apply
